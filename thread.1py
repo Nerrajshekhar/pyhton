@@ -1,0 +1,226 @@
+# import threading
+# def func1():
+#     for i in range(100):
+#         print("func1",i)
+# def func2():
+#     for i in range(100):
+#         print("func2",i)
+# #pl
+# # func1()
+# # func2()
+# th1=threading.Thread(target=func1)
+# th2=threading.Thread(target=func2)
+# th1.start()
+# th2.start()
+
+
+  #new program
+# import threading
+# def func1():
+#     for i in range(100):
+#         print("threadA",i)
+# def func2():
+#     for i in range(100):
+#         print("threadB",i)
+# # func1()
+# # func2()
+# thA=threading.Thread(target=func1)
+# thB=threading.Thread(target=func2)
+# thA.start()
+# thB.start()
+
+
+
+# import threading
+# def func1():
+#     for i in range(1000):
+#         print("threadA",i)
+# def func2():
+#     for i in range(1000):
+#         print("threadB",i)
+# #PL
+# # func1()
+# # func2()
+# thA=threading.Thread(target=func1)
+# thB=threading.Thread(target=func2)
+# thA.start()
+# thB.start()
+# for i in range(1000):
+#     print("main",i)
+
+#new pogram
+# import threading
+# def func1():
+#     for i in range(10):
+#         print(threading.current_thread().getName(),i)
+# # def func2():
+# #     for i in range(1000):
+# #         print("threadB",i)
+# #PL
+# # func1()
+# # func2()
+# thA=threading.Thread(target=func1)
+# thB=threading.Thread(target=func1)
+# thA.start()
+# thB.start()
+# for i in range(1000):
+#     print("main",i)
+
+#new program
+# import threading
+# def func1():
+#     global A
+#     for i in range(5):
+#         A+=1
+#         print("thraed")
+# def func2():
+#     global B
+#     for i in range(5):
+#         B+=1
+# #PL
+# # func1()
+# # func2()
+# A,B=0,0
+# thA=threading.Thread(target=func1)
+# thB=threading.Thread(target=func2)
+# thA.start()
+# thB.start()
+# print(A,B)
+
+
+
+#new program
+# import threading
+# def func1():
+#     global A
+#     for i in range(10000000):
+#         A+=1
+# def func2():
+#     global B
+#     for i in range(10000000):
+#         B+=1
+# #PL
+# # func1()
+# # func2()
+# A,B=0,0
+# thA=threading.Thread(target=func1)
+# thB=threading.Thread(target=func2)
+# thA.start()
+# thB.start()
+# while(thA.is_alive() or thB.is_alive()):
+#     pass
+# print(A,B)
+
+
+#new program
+# import threading
+# def func1():
+#     global A
+#     for i in range(1000000):
+#         A+=1
+#         #print("thraed")
+# def func2():
+#     global B
+#     for i in range(100000000):
+#         B+=1
+# #PL
+# # func1()
+# # func2()
+# A,B=0,0
+# thA=threading.Thread(target=func1)
+# thB=threading.Thread(target=func2)
+# thA.start()
+# thB.start()
+# thA.join()
+# print(A,B)
+# print(thA.is_alive())
+# print(thB.is_alive())
+# thB.join()
+# print(thB.is_alive())
+# print(A,B)
+
+
+# #new program
+# import threading
+# def func1():
+#     global A
+#     for i in range(1000):
+#         lockobject.acquire()
+#         A+=1
+#         lockobject.release()
+#         #print("thraed")
+# # def func2():
+# #     global B
+# #     for i in range(10000000):
+# #         B+=1
+# #PL
+# # func1()
+# # func2()
+# A=0
+# thA=threading.Thread(target=func1)
+# thB=threading.Thread(target=func1)
+# thA.start();thB.start()
+# lockobject=threading.Lock()
+# thA.join()
+# print(A)
+# print(thA.is_alive())
+# print(A)
+# print(thB.is_alive())
+# print(A)
+# thB.join()
+# #print(A)
+# print(thB.is_alive())
+# print(A)
+# #
+
+
+#today    applying lock
+# import threading
+# def func1():
+#     global A
+#     for i in range(10000000):
+#         lockobject.acquire()
+#         A+=1
+#         lockobject.release()
+#         #print("thraed")
+# # def func2():
+# #     global B
+# #     for i in range(10):
+# #         A+=1
+# A=0
+# thA=threading.Thread(target=func1)
+# thB=threading.Thread(target=func1)
+# lockobject=threading.Lock()
+# # thA.setDaemon(True)
+# thA.start();
+# thB.start()
+# thA.join()
+# thB.join()
+# print(A)
+
+#pll new program for demon
+import threading
+def func1():
+    global A
+    for i in range(10):
+        # lockobject.acquire()
+        print("funcA",i)
+        A+=1
+        # lockobject.release()
+        #print("thraed")
+def func2():
+    global B
+    for i in range(10):
+        B+=1
+        print("funcB", i)
+A=0;B=0
+thA=threading.Thread(target=func1)
+thB=threading.Thread(target=func2)
+# lockobject=threading.Lock()
+thA.setDaemon(True)
+thB.setDaemon(True)
+thA.start();
+thB.start()
+thA.join()
+thB.join()
+print(A,B)
